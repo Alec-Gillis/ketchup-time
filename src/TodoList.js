@@ -1,23 +1,22 @@
 import React from 'react'
 
 
-class TodoList extends React.Component {
-	render() {
+const TodoList = props => {
+	const rows = props.items.map((item) => {
 		return (
-		  <ul>
-			{this.props.items.map(item => (
-				<div>
-					<input type="checkbox" id={item.id} />
-					<label for={item.id} key={item.id}>{item.text}</label>
-					<form>
-						<button>x</button>
-					</form>
-					
-				</div>
-			))}
-		  </ul>
-		);
-	}
+			<tr key={item.id}>
+				<td><input type="checkbox" /></td>
+				<td>{item.text}</td>
+				<td>
+					<button onClick={()=> props.removeItem(item.id)}>Remove</button>
+				</td>
+			</tr>
+		)
+	})
+
+	return (
+		<tbody>{rows}</tbody>
+	)
 }
 
 export default TodoList
