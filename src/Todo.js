@@ -1,6 +1,10 @@
 import React, { Component } from 'react'
 import logo from './logo.svg';
 
+import Button from 'react-bootstrap/Button'
+import Form from 'react-bootstrap/Form'
+import Col from 'react-bootstrap/Col'
+
 import TodoList from './TodoList'
 
 const app = {
@@ -20,23 +24,28 @@ class TodoApp extends Component {
 			</h2>
 			
 			<h3>TODO</h3>
-			<form onSubmit={this.handleSubmit}>
-			<p>
-			  Create a task
-			</p>
-			<input
-			  id="new-todo"
-			  placeholder="What needs to be done?"
-			  onChange={this.handleChange}
-			  value={this.state.text}
-			/>
-			<button>
-			  Add #{this.state.items.length + 1}
-			</button>
-			<table>
-		  	<TodoList items={this.state.items} removeItem={this.handleRemove} />
-			</table>
-		  </form>
+			<Form onSubmit={this.handleSubmit}>
+				<p>
+				Create a task
+				</p>
+				<Form.Row>
+					<Col>
+						<Form.Control
+						id="new-todo"
+						placeholder="What needs to be done?"
+						onChange={this.handleChange}
+						value={this.state.text}
+						/>
+					</Col>
+					<Col>
+						<Button type="submit" >
+							Add #{this.state.items.length + 1}
+						</Button>
+					</Col>
+				</Form.Row>
+				
+				<TodoList items={this.state.items} removeItem={this.handleRemove} />
+		  	</Form>
 			{app.catchPhrase && <p>{app.catchPhrase}</p>}
 			<a
 			className="App-link"
